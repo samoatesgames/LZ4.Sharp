@@ -45,7 +45,7 @@ namespace LZ4.Sharp
         /// <summary>
         /// Output the mode and level of the settings as a user friendly string.
         /// </summary>
-        /// <returns>A string representing the compresison settings.</returns>
+        /// <returns>A string representing the compression settings.</returns>
         public override string ToString()
         {
             return $"Mode: {CompressionMode}, Level: {CompressionLevel}";

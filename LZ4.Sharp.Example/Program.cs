@@ -2,12 +2,12 @@
 
 namespace LZ4.Sharp.Example
 {
-    class Program
+    internal static class Program
     {
-        static void Main()
+        private static void Main()
         {
             const int randomDataSize = 1024 * 512; // 512KB
-            byte[] dataToCompress = new byte[randomDataSize];
+            var dataToCompress = new byte[randomDataSize];
 
             // Generate some random data for our data source
             var random = new Random();

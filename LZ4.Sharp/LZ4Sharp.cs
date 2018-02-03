@@ -1,12 +1,11 @@
-﻿
-using System.IO;
+﻿using System.IO;
 using System.Text;
 
 namespace LZ4.Sharp
 {
-    public class LZ4Sharp
+    public static class LZ4Sharp
     {
-        #region Compression
+        #region Compression Methods
         /// <summary>
         /// Compress a given array of bytes, storing the result within the 'out' variable 'compressedData'.
         /// The compression is completed respected the settings provided.
@@ -84,7 +83,7 @@ namespace LZ4.Sharp
         /// Compress a given stream, storing the result within the 'out' variable 'compressedData'.
         /// The compression is completed respected the settings provided.
         /// </summary>
-        /// <param name="data">The stream you want to compress using LZ4.</param>
+        /// <param name="stream">The stream you want to compress using LZ4.</param>
         /// <param name="compressedData">The compressed representation of the data, null if the result is not 'Success'.</param>
         /// <param name="settings">The settings to use when compressing the provided data.</param>
         /// <returns>An LZ4Result stating the result of the compression.</returns>
