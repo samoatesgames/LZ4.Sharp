@@ -25,9 +25,10 @@ namespace LZ4.Sharp.Example
             {
                 var start = DateTime.Now;
                 // Compress the data
-                if (LZ4Sharp.CompressBytes(dataToCompress, out var compressedData, compressionSetting) == LZ4Result.UnknownError)
+                var result = LZ4Sharp.CompressBytes(dataToCompress, out var compressedData, compressionSetting);
+                if (result != LZ4Result.Success)
                 {
-                    Console.WriteLine($"Failed to compress data using settings {compressionSetting}.");
+                    Console.WriteLine($"Failed to compress data using settings {compressionSetting}, Reason: {result}.");
                     continue;
                 }
 
