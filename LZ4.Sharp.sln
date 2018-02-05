@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{846F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LZ4.Sharp.Example", "LZ4.Sharp.Example\LZ4.Sharp.Example.csproj", "{DA11AAE9-4BCE-4B1A-8D91-A6BAAB8C8232}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FAE67580-1925-4996-B849-DCCD507DB06B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LZ4.Sharp.Tests", "Tests\LZ4.Sharp.Tests\LZ4.Sharp.Tests.csproj", "{A62D890B-8400-45E4-93A3-BDA6FF331E1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -37,6 +41,10 @@ Global
 		{DA11AAE9-4BCE-4B1A-8D91-A6BAAB8C8232}.Debug|x64.Build.0 = Debug|x64
 		{DA11AAE9-4BCE-4B1A-8D91-A6BAAB8C8232}.Release|x64.ActiveCfg = Release|x64
 		{DA11AAE9-4BCE-4B1A-8D91-A6BAAB8C8232}.Release|x64.Build.0 = Release|x64
+		{A62D890B-8400-45E4-93A3-BDA6FF331E1F}.Debug|x64.ActiveCfg = Debug|x64
+		{A62D890B-8400-45E4-93A3-BDA6FF331E1F}.Debug|x64.Build.0 = Debug|x64
+		{A62D890B-8400-45E4-93A3-BDA6FF331E1F}.Release|x64.ActiveCfg = Release|x64
+		{A62D890B-8400-45E4-93A3-BDA6FF331E1F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +53,7 @@ Global
 		{7EB0E027-1A83-45BD-A6DC-1C52F3110B67} = {B584C469-AF76-4955-94A6-7FE374652583}
 		{4036CF95-5F0C-4951-96D3-2C34CC7138C6} = {B584C469-AF76-4955-94A6-7FE374652583}
 		{DA11AAE9-4BCE-4B1A-8D91-A6BAAB8C8232} = {846F4701-5F6D-426D-A8BF-542B45CBAE7C}
+		{A62D890B-8400-45E4-93A3-BDA6FF331E1F} = {FAE67580-1925-4996-B849-DCCD507DB06B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E42D0FD0-B1A6-488D-8367-60DFAD29275D}

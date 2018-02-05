@@ -9,7 +9,7 @@ namespace LZ4.Sharp
         Success,
 
         /// <summary>
-        /// Compression failed, happens when LZ4 returns a zero length compresison result.
+        /// Compression failed, happens when LZ4 returns a zero length compression result.
         /// </summary>
         CompressionFailed,
 
@@ -27,9 +27,19 @@ namespace LZ4.Sharp
         /// When using the fast compression mode, on the 'Default' compression level is supported.
         /// </summary>
         FastCompressionOnlySupportsDefaultCompressionLevel,
+        
+        /// <summary>
+        /// The data set to be compressed is null.
+        /// </summary>
+        UncompressedDataIsNull,
 
         /// <summary>
-        /// An unknown error has occured.
+        /// The specified compression settings are null.
+        /// </summary>
+        CompressionSettingsAreNull,
+
+        /// <summary>
+        /// An unknown error has occurred.
         /// </summary>
         UnknownError
     }

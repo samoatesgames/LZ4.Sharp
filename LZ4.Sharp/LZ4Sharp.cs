@@ -16,6 +16,19 @@ namespace LZ4.Sharp
         /// <returns>An LZ4Result stating the result of the compression.</returns>
         public static LZ4Result CompressBytes(byte[] data, out byte[] compressedData, LZ4CompressionSettings settings)
         {
+            // Validate input arguments
+            if (data == null)
+            {
+                compressedData = null;
+                return LZ4Result.UncompressedDataIsNull;
+            }
+
+            if (settings == null)
+            {
+                compressedData = null;
+                return LZ4Result.CompressionSettingsAreNull;
+            }
+
             // Validate the compression level
             if (settings.CompressionLevel > LZ4CompressionLevel.Max ||
                 settings.CompressionLevel < LZ4CompressionLevel.Lowest)
