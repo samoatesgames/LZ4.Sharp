@@ -49,7 +49,7 @@ namespace LZ4.Sharp
                     compressedData = LZ4ManagedWrapper.LZ4Wrapper.CompressHighQuality(data, (int)settings.CompressionLevel);
                     if (compressedData.Length == 0)
                     {
-                            compressedData = null;
+                        compressedData = null;
                         return LZ4Result.CompressionFailed;
                     }
                     break;

@@ -14,12 +14,18 @@ array<unsigned char>^ LZ4ManagedWrapper::LZ4Wrapper::CompressDefault(array<unsig
 	// Get access to the managed data so we can access it as native data
 	pin_ptr<unsigned char> nativeDataToCompress = &dataToCompress[0];
 
-	// Create a target buffer for the compressed data, compression can never make data larger so we know 
-	// that the max buffer size is the size of the source data.
-	auto nativeDestination = new char[dataToCompress->Length];
+	// Calculate the largest possible size for the destination.
+	const auto maxDestinationSize = LZ4_compressBound(dataToCompress->Length);
+	if (maxDestinationSize <= 0)
+	{
+		return gcnew array<unsigned char>(0);
+	}
+
+	// Create a destination buffer to write too
+	auto nativeDestination = new char[maxDestinationSize];
 
 	// Call the LZ4 compression method
-	const auto actualDestinationSize = LZ4_compress_default((const char*)nativeDataToCompress, nativeDestination, dataToCompress->Length, dataToCompress->Length);
+	const auto actualDestinationSize = LZ4_compress_default((const char*)nativeDataToCompress, nativeDestination, dataToCompress->Length, maxDestinationSize);
 
 	// Create a managed array for our compressed data.
 	// The LZ4 compression method returns the actual size of the compressed data so we can create
@@ -42,8 +48,14 @@ array<unsigned char>^ LZ4ManagedWrapper::LZ4Wrapper::CompressHighQuality(array<u
 	// Get access to the managed data so we can access it as native data
 	pin_ptr<unsigned char> nativeDataToCompress = &dataToCompress[0];
 
-	// Create a target buffer for the compressed data, compression can never make data larger so we know 
-	// that the max buffer size is the size of the source data.
+	// Calculate the largest possible size for the destination.
+	const auto maxDestinationSize = LZ4_compressBound(dataToCompress->Length);
+	if (maxDestinationSize <= 0)
+	{
+		return gcnew array<unsigned char>(0);
+	}
+
+	// Create a destination buffer to write too
 	auto nativeDestination = new char[dataToCompress->Length];
 
 	// Call the LZ4 compression method
