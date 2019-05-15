@@ -50,6 +50,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LZ4SharpDecompressionTests.cs" />
     <Compile Include="LZ4SharpFastCompressionTests.cs" />
     <Compile Include="LZ4SharpHighQualityCompressionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
