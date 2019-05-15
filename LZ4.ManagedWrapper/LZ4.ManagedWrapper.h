@@ -14,5 +14,8 @@ namespace LZ4ManagedWrapper
 
 		//* Wraps the LZ4 compression method 'LZ4_compress_HC' */
 		static array<unsigned char>^ CompressHighQuality(array<unsigned char>^ dataToCompress, int compressionLevel);
+
+		//* Wraps the LZ4 decompression method 'LZ4_decompress_safe' */
+		static array<unsigned char>^ DecompressSafe(array<unsigned char>^ dataToDecompress, int uncompressedSize);
 	};
 }

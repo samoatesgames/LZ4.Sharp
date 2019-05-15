@@ -39,6 +39,16 @@ namespace LZ4.Sharp
         CompressionSettingsAreNull,
 
         /// <summary>
+        /// The decompression failed.
+        /// </summary>
+        DecompressionFailed,
+
+        /// <summary>
+        /// The decompressed data is not the expected size.
+        /// </summary>
+        DecompressedDataDoesNotMatchExpectedSize,
+
+        /// <summary>
         /// An unknown error has occurred.
         /// </summary>
         UnknownError

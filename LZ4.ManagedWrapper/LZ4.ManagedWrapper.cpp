@@ -75,3 +75,29 @@ array<unsigned char>^ LZ4ManagedWrapper::LZ4Wrapper::CompressHighQuality(array<u
 	// Return the compressed data
 	return compressedData;
 }
+
+//* Wraps the LZ4 decompression method 'LZ4_decompress_safe' */
+array<unsigned char>^ LZ4ManagedWrapper::LZ4Wrapper::DecompressSafe(array<unsigned char>^ dataToDecompress, int uncompressedSize)
+{
+	// Get access to the managed data so we can access it as native data
+	pin_ptr<unsigned char> nativeDataToDecompress = &dataToDecompress[0];
+
+	// Create a target buffer for the decompressed data
+	auto nativeDestination = new char[uncompressedSize];
+
+	// Call the LZ4 compression method
+	const auto decompressedSize = LZ4_decompress_safe((const char*)nativeDataToDecompress, nativeDestination, dataToDecompress->Length, uncompressedSize);
+
+	// Create a managed array for our decompressed data.
+	// The LZ4 compression method returns the actual size of the decompressed data so we can create
+	// a managed buffer of the correct size.
+	array<unsigned char>^ decompressedData = gcnew array<unsigned char>(decompressedSize);
+
+	// Copy the native data across into the managed array
+	Marshal::Copy(IntPtr(nativeDestination), decompressedData, 0, decompressedSize);
+
+	// Destroy the native buffer
+	delete[] nativeDestination;
+
+	return decompressedData;
+}

@@ -6,6 +6,7 @@ namespace LZ4.Sharp
     public static class LZ4Sharp
     {
         #region Compression Methods
+
         /// <summary>
         /// Compress a given array of bytes, storing the result within the 'out' variable 'compressedData'.
         /// The compression is completed respected the settings provided.
@@ -108,6 +109,53 @@ namespace LZ4.Sharp
                 return CompressBytes(tempStream.ToArray(), out compressedData, settings);
             }
         }
+
+        #endregion
+
+        #region Decompression Methods
+
+        /// <summary>
+        /// Decompress an array of compressed data, storing the result within the 'out' variable 'data'.
+        /// </summary>
+        /// <param name="compressedData">The source compressed data to be decompressed.</param>
+        /// <param name="uncompressedDataSize">The expected size of the decompressed data.</param>
+        /// <param name="data">[out] If decompression is successful the decompressed data, else null.</param>
+        /// <returns>An LZ4Result stating the result of the decompression.</returns>
+        public static LZ4Result DecompressBytes(byte[] compressedData, int uncompressedDataSize, out byte[] data)
+        {
+            data = LZ4ManagedWrapper.LZ4Wrapper.DecompressSafe(compressedData, uncompressedDataSize);
+
+            if (data.Length == 0)
+            {
+                data = null;
+                return LZ4Result.DecompressionFailed;
+            }
+
+            if (data.Length != uncompressedDataSize)
+            {
+                data = null;
+                return LZ4Result.DecompressedDataDoesNotMatchExpectedSize;
+            }
+
+            return LZ4Result.Success;
+        }
+
+        /// <summary>
+        /// Decompress a stream of compressed data, storing the result within the 'out' variable 'data'.
+        /// </summary>
+        /// <param name="compressedData">The source compressed data to be decompressed.</param>
+        /// <param name="uncompressedDataSize">The expected size of the decompressed data.</param>
+        /// <param name="data">[out] If decompression is successful the decompressed data, else null.</param>
+        /// <returns>An LZ4Result stating the result of the decompression.</returns>
+        public static LZ4Result DecompressStream(Stream compressedData, int uncompressedDataSize, out byte[] data)
+        {
+            using (var tempStream = new MemoryStream())
+            {
+                compressedData.CopyTo(tempStream);
+                return DecompressBytes(tempStream.ToArray(), uncompressedDataSize, out data);
+            }
+        }
+
         #endregion
     }
 }
