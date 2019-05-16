@@ -4,7 +4,8 @@
 
 A C# wrapper for LZ4, supporting multiple compression modes and decompression of data.
 
-[![GitHub](https://img.shields.io/github/license/samoatesgames/Cake.Unity3D.svg?style=flat-square)](https://github.com/samoatesgames/LZ4.Sharp/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/samoatesgames/LZ4.Sharp.svg?style=flat-square)](https://github.com/samoatesgames/LZ4.Sharp/blob/master/LICENSE)
+[![Nuget](https://img.shields.io/nuget/dt/LZ4.Sharp.svg?label=Nuget&style=flat-square)](https://www.nuget.org/packages/LZ4.Sharp/)
 
 ### Methods
 
