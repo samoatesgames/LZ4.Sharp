@@ -12,7 +12,7 @@ using namespace System::Security::Permissions;
 // associated with an assembly.
 //
 [assembly:AssemblyTitleAttribute(L"LZ4ManagedWrapper")];
-[assembly:AssemblyDescriptionAttribute(L"")];
+[assembly:AssemblyDescriptionAttribute(L"A C# wrapper for the LZ4 compression library")];
 [assembly:AssemblyConfigurationAttribute(L"")];
 [assembly:AssemblyCompanyAttribute(L"")];
 [assembly:AssemblyProductAttribute(L"LZ4ManagedWrapper")];

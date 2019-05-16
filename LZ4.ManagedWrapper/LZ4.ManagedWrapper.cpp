@@ -88,6 +88,14 @@ array<unsigned char>^ LZ4ManagedWrapper::LZ4Wrapper::DecompressSafe(array<unsign
 	// Call the LZ4 compression method
 	const auto decompressedSize = LZ4_decompress_safe((const char*)nativeDataToDecompress, nativeDestination, dataToDecompress->Length, uncompressedSize);
 
+	// Check to see if the data is valid and can be decompressed.
+	if (decompressedSize <= 0)
+	{
+		// The data is invalid and can not be decompressed.
+		delete[] nativeDestination;
+		return nullptr;
+	}
+
 	// Create a managed array for our decompressed data.
 	// The LZ4 compression method returns the actual size of the decompressed data so we can create
 	// a managed buffer of the correct size.

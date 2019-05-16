@@ -13,7 +13,7 @@ namespace LZ4.Sharp.Tests
         [TestMethod]
         public void TestFastCompressionSuccess()
         {
-            var validTestData = TestHelper.CreateValidTestData();
+            var validTestData = TestHelper.GetDataToCompress();
             var result = LZ4Sharp.CompressBytes(validTestData, out var compressedData, LZ4CompressionSettings.Fast);
             Assert.AreEqual(LZ4Result.Success, result);
             Assert.IsTrue(validTestData.Length >= compressedData.Length);
@@ -27,7 +27,7 @@ namespace LZ4.Sharp.Tests
         [TestMethod]
         public void TestFastCompressionNonDefaultLevelFail()
         {
-            var validTestData = TestHelper.CreateValidTestData();
+            var validTestData = TestHelper.GetDataToCompress();
             var result = LZ4Sharp.CompressBytes(validTestData, out var compressedData, new LZ4CompressionSettings(LZ4CompressionMode.Fast, LZ4CompressionLevel.Max));
             Assert.AreEqual(LZ4Result.FastCompressionOnlySupportsDefaultCompressionLevel, result);
             Assert.IsNull(compressedData);
@@ -61,7 +61,7 @@ namespace LZ4.Sharp.Tests
             Assert.AreEqual(LZ4Result.UncompressedDataIsNull, result);
             Assert.IsNull(compressedData);
 
-            result = LZ4Sharp.CompressBytes(TestHelper.CreateValidTestData(), out compressedData, null);
+            result = LZ4Sharp.CompressBytes(TestHelper.GetDataToCompress(), out compressedData, null);
             Assert.AreEqual(LZ4Result.CompressionSettingsAreNull, result);
             Assert.IsNull(compressedData);
 
@@ -69,7 +69,7 @@ namespace LZ4.Sharp.Tests
             Assert.AreEqual(LZ4Result.CompressionSettingsAreNull, result);
             Assert.IsNull(compressedData);
 
-            result = LZ4Sharp.CompressBytes(TestHelper.CreateValidTestData(), out compressedData, new LZ4CompressionSettings((LZ4CompressionMode)3, LZ4CompressionLevel.Default));
+            result = LZ4Sharp.CompressBytes(TestHelper.GetDataToCompress(), out compressedData, new LZ4CompressionSettings((LZ4CompressionMode)3, LZ4CompressionLevel.Default));
             Assert.AreEqual(LZ4Result.UnsupportedCompressionMode, result);
             Assert.IsNull(compressedData);
         }

@@ -125,7 +125,7 @@ namespace LZ4.Sharp
         {
             data = LZ4ManagedWrapper.LZ4Wrapper.DecompressSafe(compressedData, uncompressedDataSize);
 
-            if (data.Length == 0)
+            if (data == null || data.Length == 0)
             {
                 data = null;
                 return LZ4Result.DecompressionFailed;

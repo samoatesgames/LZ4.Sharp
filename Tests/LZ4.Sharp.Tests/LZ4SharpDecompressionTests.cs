@@ -7,39 +7,45 @@ namespace LZ4.Sharp.Tests
     public class LZ4SharpDecompressionTests
     {
         /// <summary>
-        /// Compress some data using fast compression.
-        /// Then decompress the compressed data and validate the result is equal
-        /// to the original input.
+        /// Test to see if a block of pre-compressed data is correctly
+        /// decompressed and equal to the originally uncompressed data.
         /// </summary>
         [TestMethod]
-        public void TestDecompressionOfFastCompressedData()
+        public void TestDecompressionOfCompressedData()
         {
-            var input = TestHelper.CreateValidTestData();
-            var compressionResult = LZ4Sharp.CompressBytes(input, out var compressedData, LZ4CompressionSettings.Fast);
-            Assert.AreEqual(LZ4Result.Success, compressionResult);
+            var uncompressedData = TestHelper.GetDataToCompress();
+            var compressedData = TestHelper.GetCompressedData();
+            var decompressionResult = LZ4Sharp.DecompressBytes(compressedData, uncompressedData.Length, out var decompressedData);
 
-            var decompressionResult = LZ4Sharp.DecompressBytes(compressedData, input.Length, out var decompressedData);
             Assert.AreEqual(LZ4Result.Success, decompressionResult);
-            Assert.AreEqual(input.Length, decompressedData.Length);
-            Assert.IsTrue(input.SequenceEqual(decompressedData));
+            Assert.AreEqual(uncompressedData.Length, decompressedData.Length);
+            Assert.IsTrue(uncompressedData.SequenceEqual(decompressedData));
         }
 
         /// <summary>
-        /// Compress some data using ultra compression.
-        /// Then decompress the compressed data and validate the result is equal
-        /// to the original input.
+        /// Check the decompressing some random bytes fails.
         /// </summary>
         [TestMethod]
-        public void TestDecompressionOfUltraCompressedData()
+        public void TestDecompressionOfBadDataFails()
         {
-            var input = TestHelper.CreateValidTestData();
-            var compressionResult = LZ4Sharp.CompressBytes(input, out var compressedData, LZ4CompressionSettings.Ultra);
-            Assert.AreEqual(LZ4Result.Success, compressionResult);
+            var compressedData = new byte[] { 1, 2, 3, 4, 5, 6 };
+            var decompressionResult = LZ4Sharp.DecompressBytes(compressedData, 128, out var decompressedData);
 
-            var decompressionResult = LZ4Sharp.DecompressBytes(compressedData, input.Length, out var decompressedData);
-            Assert.AreEqual(LZ4Result.Success, decompressionResult);
-            Assert.AreEqual(input.Length, decompressedData.Length);
-            Assert.IsTrue(input.SequenceEqual(decompressedData));
+            Assert.AreEqual(LZ4Result.DecompressionFailed, decompressionResult);
+            Assert.IsNull(decompressedData);
+        }
+
+        /// <summary>
+        /// Check the decompressing valid data, with an invalid uncompressed data size fails.
+        /// </summary>
+        [TestMethod]
+        public void TestDecompressionOfInvalidSourceSizeFails()
+        {
+            var compressedData = TestHelper.GetCompressedData();
+            var decompressionResult = LZ4Sharp.DecompressBytes(compressedData, 128, out var decompressedData);
+
+            Assert.AreEqual(LZ4Result.DecompressionFailed, decompressionResult);
+            Assert.IsNull(decompressedData);
         }
     }
 }
