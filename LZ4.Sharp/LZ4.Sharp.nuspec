@@ -5,7 +5,7 @@
     <version>1.0.0</version>
     <authors>SamOatesGames</authors>
     <owners>SamOatesGames</owners>
-    <license type="expression">MIT</license>
+    <licenseUrl>https://github.com/samoatesgames/LZ4.Sharp/raw/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/samoatesgames/LZ4.Sharp</projectUrl>
     <iconUrl>https://github.com/samoatesgames/LZ4.Sharp/raw/master/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -13,12 +13,9 @@
     <releaseNotes>Initial Release</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>CSharp LZ4 Compression</tags>
-    <dependencies>
-      <dependency id="SampleDependency" version="1.0" />
-    </dependencies>
   </metadata>
   <files>
-    <file src="LZ4.Sharp\bin\x64\Release\*.dll" target="lib\net45\x64" />
-    <file src="LZ4.Sharp\bin\x64\Release\*.pdb" target="lib\net45\x64" />
+    <file src="*.dll" target="lib\net45\x64" />
+    <file src="*.pdb" target="lib\net45\x64" />
   </files>
 </package>
