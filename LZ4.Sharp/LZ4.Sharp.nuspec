@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>LZ4.Sharp</id>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <authors>SamOatesGames</authors>
     <owners>SamOatesGames</owners>
     <licenseUrl>https://github.com/samoatesgames/LZ4.Sharp/raw/master/LICENSE</licenseUrl>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A C# wrapper for LZ4</description>
     <releaseNotes>Initial Release</releaseNotes>
-    <copyright>Copyright 2019</copyright>
+    <copyright>Copyright 2025</copyright>
     <tags>CSharp LZ4 Compression</tags>
   </metadata>
   <files>
